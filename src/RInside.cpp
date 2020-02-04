@@ -525,3 +525,23 @@ void RInside::set_callbacks(Callbacks* callbacks_){
 }
 
 #endif
+
+// This is the only thing I've changed from the RInside package
+RInside rr;
+
+extern "C" {
+	void passToR(SEXP x, char * name) {
+		std::string str(name);
+		rr.assign(x, str);
+	}
+	
+	SEXP evalInR(char * cmd) {
+		std::string str(cmd);
+		return rr.parseEval(str);
+	}
+	
+	void evalQuietlyInR(char * cmd) {
+		std::string str(cmd);
+		rr.parseEvalQ(str);
+	}
+}
