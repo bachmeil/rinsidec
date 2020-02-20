@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU General Public License
 // along with RInside.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <Rinternals.h>
+
 #ifndef RINSIDEC_RINSIDEC_H
 #define RINSIDEC_RINSIDEC_H
 
