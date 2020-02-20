@@ -39,7 +39,11 @@ int main() {
 }
 ```
 
-This example is inst/examples/passdata.c.
+This example is in inst/examples/passdata.c and can be run with:
+
+```
+make pass
+```
 
 ### Example: Hello World in Ruby
 
@@ -93,7 +97,7 @@ R.evalQuietlyInR("v <- c(1.5, 3.4, 4.2)")
 puts Rlib.REAL(R.evalInR("v"))
 ```
 
-This example is inst/examples/passdata.rb, and it can be run with:
+This example is in inst/examples/passdata.rb, and it can be run with:
 
 ```
 ruby passdata.rb
