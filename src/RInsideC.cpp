@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU General Public License
 // along with RInside.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <RInsideC.h>
+#include <RInside.h>
 #include <Callbacks.h>
 #ifndef _WIN32
   #define R_INTERFACE_PTRS
