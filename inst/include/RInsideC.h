@@ -23,8 +23,8 @@
 #ifndef RINSIDEC_RINSIDEC_H
 #define RINSIDEC_RINSIDEC_H
 
-void passToR(SEXP x, char * name) {
-SEXP evalInR(char * cmd) {
-void evalQuietlyInR(char * cmd) {
+void passToR(SEXP x, char * name);
+SEXP evalInR(char * cmd);
+void evalQuietlyInR(char * cmd);
 
 #endif
