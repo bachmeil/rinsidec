@@ -15,10 +15,10 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with RInside.  If not, see <http://www.gnu.org/licenses/>.
+## along with RInsideC.  If not, see <http://www.gnu.org/licenses/>.
 
-USERLIB=libRInside$(DYLIB_EXT)
-USERLIBST=libRInside.a
+USERLIB=libRInsideC$(DYLIB_EXT)
+USERLIBST=libRInsideC.a
 USERDIR=../inst/lib
 
 PKG_CPPFLAGS = -I. -I../inst/include/
@@ -34,7 +34,7 @@ RInsideAutoloads.h:
 RInsideEnvVars.h:
 	${R_HOME}/bin/Rscript tools/RInsideEnvVars.r   > RInsideEnvVars.h
 
-RInside.cpp: headers
+RInsideC.cpp: headers
 
 userLibrary: $(USERLIB) $(USERLIBST)
 	-@if test ! -e $(USERDIR)$(R_ARCH); then mkdir -p $(USERDIR)$(R_ARCH); fi

@@ -17,8 +17,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with RInside.  If not, see <http://www.gnu.org/licenses/>.
 
-USERLIBST =	libRInside.a
-USERLIB =	libRInside.dll
+USERLIBST =	libRInsideC.a
+USERLIB =	libRInsideC.dll
 #USERDIR =	$(R_PACKAGE_DIR)/inst/lib$(R_ARCH)
 USERDIR =	../inst/lib$(R_ARCH)
 

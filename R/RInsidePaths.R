@@ -1,11 +1,11 @@
 
 ## Use R's internal knowledge of path settings to find the lib/ directory
 ## plus optinally an arch-specific directory on system building multi-arch
-RInsideLdPath <- function() {
+RInsideCLdPath <- function() {
     if (nzchar(.Platform$r_arch)) {     ## eg amd64, ia64, mips
-        system.file("lib",.Platform$r_arch,package="RInside")
+        system.file("lib",.Platform$r_arch,package="RInsideC")
     } else {
-        system.file("lib",package="RInside")
+        system.file("lib",package="RInsideC")
     }
 }
 
@@ -16,27 +16,27 @@ RInsideLdPath <- function() {
 ## Updated Jan 2010:  We now default to static linking but allow the use
 ##                    of rpath on Linux if static==FALSE has been chosen
 ##                    Note that this is probably being called from LdFlags()
-RInsideLdFlags <- function(static=TRUE) {
-    rinsidedir <- RInsideLdPath()
+RInsideCLdFlags <- function(static=TRUE) {
+    rinsidecdir <- RInsideCLdPath()
     if (static) {                               # static is default on Windows and OS X
-        flags <- paste(rinsidedir, "/libRInside.a", sep="")
+        flags <- paste(rinsidedir, "/libRInsideC.a", sep="")
         if (.Platform$OS.type=="windows") {
             flags <- shQuote(flags)
         }
     } else {					# else for dynamic linking
-        flags <- paste("-L", rinsidedir, " -lRInside", sep="") # baseline setting
+        flags <- paste("-L", rinsidecdir, " -lRInsideC", sep="") # baseline setting
         if ((.Platform$OS.type == "unix") &&    # on Linux, we can use rpath to encode path
             (length(grep("^linux",R.version$os)))) {
-            flags <- paste(flags, " -Wl,-rpath,", rinsidedir, sep="")
+            flags <- paste(flags, " -Wl,-rpath,", rinsidecdir, sep="")
         }
     }
     invisible(flags)
 }
 
 
-## Provide compiler flags -- i.e. -I/path/to/RInside.h
-RInsideCxxFlags <- function() {
-    path <- system.file( "include", package = "RInside" )
+## Provide compiler flags -- i.e. -I/path/to/RInsideC.h
+RInsideCFlags <- function() {
+    path <- system.file( "include", package = "RInsideC" )
     # if (.Platform$OS.type=="windows") {
     #     path <- shQuote(path)
     # }
@@ -44,13 +44,13 @@ RInsideCxxFlags <- function() {
 }
 
 ## Shorter names, and call cat() directly
-CxxFlags <- function() {
-    cat(RInsideCxxFlags())
+CFlags <- function() {
+    cat(RInsideCFlags())
 }
 
 ## LdFlags defaults to static linking on the non-Linux platforms Windows and OS X
 LdFlags <- function(static=ifelse(length(grep("^linux",R.version$os))==0, TRUE, FALSE)) {
-    cat(RInsideLdFlags(static=static))
+    cat(RInsideCLdFlags(static=static))
 }
 
 
